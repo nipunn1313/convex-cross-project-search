@@ -4,9 +4,11 @@
 
 import { defineSchema, defineTable } from "convex/server";
 import { v } from "convex/values";
+import { tables } from "@xixixao/convex-auth/server";
 
 export default defineSchema(
   {
+    ...tables,
     documents: defineTable({
       fieldOne: v.string(),
       fieldTwo: v.object({
