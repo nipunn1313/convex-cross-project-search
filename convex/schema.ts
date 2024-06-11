@@ -9,15 +9,10 @@ import { tables } from "@xixixao/convex-auth/server";
 export default defineSchema(
   {
     ...tables,
-    documents: defineTable({
-      fieldOne: v.string(),
-      fieldTwo: v.object({
-        subFieldOne: v.array(v.number()),
-      }),
-    }),
-    // This definition matches the example query and mutation code:
-    numbers: defineTable({
-      value: v.number(),
+    envVars: defineTable({
+      teamSlug: v.string(),
+      projectSlug: v.string(),
+      envVarName: v.string(),
     }),
   },
   // If you ever get an error about schema mismatch

@@ -1,6 +1,7 @@
-import { Authenticated, Unauthenticated } from "convex/react";
+import { Authenticated, Unauthenticated, useQuery } from "convex/react";
 import { SignIn } from "./SignIn";
 import { SignOutButton } from "./SignOut";
+import { api } from "../convex/_generated/api";
 
 function App() {
   return (
@@ -22,10 +23,23 @@ function SignedInContent() {
   return (
     <main className="container max-w-2xl flex flex-col gap-8">
       <p className="flex gap-4 items-center justify-between">
-        Welcome (tbd)!
+        <Welcome />
         <SignOutButton />
       </p>
     </main>
+  );
+}
+
+function Welcome() {
+  const user = useQuery(api.myFunctions.getUser);
+  if (!user) {
+    return "Welcome";
+  }
+  return (
+    <>
+      <img src={user.image} width="80" />
+      Welcome {user.name}!
+    </>
   );
 }
 
